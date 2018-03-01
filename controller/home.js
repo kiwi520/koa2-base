@@ -4,9 +4,9 @@ module.exports = {
         await ctx.render("home/index", {title: "吊打👁"})
     },
     home: async(ctx, next) => {
-        console.log(ctx.request.query)
-        console.log(ctx.request.querystring)
-        ctx.response.body = '<h1>HOME page</h1>'
+        ctx.send({status:"200"})
+        ctx.log.error("测试一下")
+        // ctx.response.body = '<h1>HOME page</h1>'
     },
     homeParams: async(ctx, next) => {
         console.log(ctx.params)
