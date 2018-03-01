@@ -7,7 +7,27 @@ const miSend = require('./mi-send')
 const miLog = require('./mi-log')
 // 引入请求错误中间件
 const miHttpError = require('./mi-http-error')
+// 引入规则中件间
+const miRule = require('./mi-rule')
 module.exports = (app) => {
+    /**
+     * 在接口的开头调用
+     * 指定 controller 文件夹下的 js 文件，挂载在 app.controller 属性
+     * 指定 service 文件夹下的 js 文件，挂载在 app.service 属性
+     */
+    miRule({
+        app,
+        rules: [
+            {
+                path: path.join(__dirname, '../controller'),
+                name: 'controller'
+            },
+            {
+                path: path.join(__dirname, '../service'),
+                name: 'service'
+            }
+        ]
+    })
     // 应用请求错误中间件
     app.use(miHttpError({
         errorPageFolder: path.resolve(__dirname, '../errorPage')
