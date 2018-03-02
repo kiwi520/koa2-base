@@ -23,8 +23,8 @@ module.exports = {
         let params = ctx.request.body
         let name = params.name
         let password = params.password
-        // 留意 service 层的调用方式
-        let res = await app.service.home.register(name,password)
+        // 留意 models 层的调用方式
+        let res = await app.models.home.register(name,password)
         if(res.status == "-1"){
             await ctx.render("home/login", res.data)
         }else{
