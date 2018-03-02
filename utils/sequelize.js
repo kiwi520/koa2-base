@@ -1,15 +1,14 @@
 const Sequelize = require('sequelize');
-const config = require('../config/db').db;
-var seql = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
+const Config  = require('../config/sequelize/db')
+console.log('init sequelize...');
+console.log(Config.database,Config.username, Config.password)
+
+module.exports = new Sequelize( Config.database,Config.username, Config.password, {
+    host: Config.host,
     dialect: 'mysql',
     pool: {
         max: 5,
         min: 0,
-        idle: 30000
+        idle: 10000
     }
 });
-
-module.exports = {
-    seql
-}

@@ -1,6 +1,8 @@
-const adminModel = require("../models/admin");
+const model = require("../models/admin");
+
+let Admin = model.Admin
 let getAdminInfo = async (ctx, next) => {
-    const RowDataPacket = await adminModel.adminAll(),
+    const RowDataPacket = await Admin.findAll(),
         Info = JSON.parse(JSON.stringify(RowDataPacket));
     ctx.body = {
         success: true,

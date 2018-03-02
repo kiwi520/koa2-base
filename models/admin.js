@@ -1,12 +1,23 @@
-const { query } = require('../utils/db');
+const Sequelize = require('sequelize');
+const sequelize = require("../utils/sequelize")
 
 
-// 注册用户
-let adminAll = function() {
-    let _sql = "SELECT * FROM admins"
-    return query(_sql)
-}
-
+const  Admin = sequelize.define('admin',{
+    name: {
+        type: Sequelize.STRING
+    },
+    password:{
+        type: Sequelize.STRING
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+        field: 'created_at'
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        field: 'updated_at'
+    }
+})
 module.exports = {
-    adminAll
+    Admin
 }
